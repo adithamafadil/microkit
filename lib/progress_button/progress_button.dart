@@ -103,7 +103,7 @@ class ProgressButton extends StatefulWidget {
     this.minWidth = 90,
     @required this.onPressed,
     this.radius = 8,
-    this.state,
+    @required this.state,
     @required this.widgetState,
   })  : assert(
           // Asserting onPressed cannot be null

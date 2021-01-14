@@ -5,7 +5,6 @@ import 'package:json_annotation/json_annotation.dart';
 part 'movie_item_entity.g.dart';
 part 'movie_item_entity.freezed.dart';
 
-//flutter pub run build_runner build
 @freezed
 abstract class MovieItemEntity with _$MovieItemEntity {
   const factory MovieItemEntity({

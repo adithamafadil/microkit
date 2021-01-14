@@ -57,7 +57,7 @@ class Shimmer extends StatefulWidget {
     final Color baseColor = Colors.grey,
     final Duration duration = const Duration(milliseconds: 1500),
     final Color highlightColor = Colors.blueGrey,
-    @required final int itemCount,
+    final int itemCount,
     final BoxShape leadingShape = BoxShape.circle,
     final BoxShape trailingShape = BoxShape.circle,
     final bool useLeading = true,
