@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:example/bloc/movies_bloc.dart';
 import 'package:example/interactor/state/interactor_state.dart';
 import 'package:flutter/material.dart';
@@ -6,6 +7,7 @@ import 'package:microkit/microkit.dart';
 
 class Homescreen extends StatelessWidget {
   var imageURL = 'http://image.tmdb.org/t/p/w500';
+  var failedImage = 'assets/failed_to_load.png';
   var noImage =
       'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRHL78BFzD4eW6FOjaZsUuKfQYZljcexyonUA&usqp=CAU';
   @override
@@ -57,7 +59,6 @@ class Homescreen extends StatelessWidget {
                       itemCount: state.movieResult.results.length,
                       itemBuilder: (context, index) {
                         var data = state.movieResult.results[index];
-
                         return ExpandableMenu(
                           title: {
                             MenuState.collapse:
@@ -89,12 +90,20 @@ class Homescreen extends StatelessWidget {
   Widget _title(var data, MenuState menuState) {
     return ListTile(
       contentPadding: const EdgeInsets.all(0),
-      leading: CircleAvatar(
-        radius: 30,
-        backgroundImage: NetworkImage(
-          data.posterPath != null
-              ? '$imageURL' + '${data.posterPath}'
-              : noImage,
+      leading: Container(
+        height: 60,
+        width: 60,
+        decoration: BoxDecoration(shape: BoxShape.circle),
+        child: ClipRRect(
+          borderRadius: BorderRadius.circular(999),
+          child: CachedNetworkImage(
+            placeholder: (context, url) => const CircularProgressIndicator(),
+            errorWidget: (context, url, error) => Image.asset(failedImage),
+            fit: BoxFit.cover,
+            imageUrl: data.posterPath != null
+                ? '$imageURL' + '${data.posterPath}'
+                : noImage,
+          ),
         ),
       ),
       title: Column(
