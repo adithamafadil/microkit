@@ -111,6 +111,12 @@ class _ExpandableMenuState extends State<ExpandableMenu>
   }
 
   @override
+  void dispose() {
+    _animationController.dispose();
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Column(
       children: [
