@@ -55,12 +55,12 @@ class ExpandableMenu extends StatefulWidget {
 
   ExpandableMenu({
     Key key,
-    this.backroundTitleColor,
-    this.collapsable,
+    @required this.backroundTitleColor,
+    @required this.collapsable,
     this.curve = const Cubic(0.4, 0.0, 0.2, 1),
     this.expandedHeight = 230,
     this.splashColor,
-    this.title,
+    @required this.title,
   })  : assert(
           backroundTitleColor != null &&
               backroundTitleColor.keys
@@ -75,6 +75,7 @@ class ExpandableMenu extends StatefulWidget {
           'title needs all your keys from ButtonStates. You\'re missing' +
               ' keys at ${MenuState.values.toSet().difference(title.keys.toSet())}',
         ),
+        assert(collapsable != null),
         super(key: key);
 
   @override
